@@ -1,3 +1,5 @@
+//Look at me. I am the captain now
+
 #include "player.hpp"
 
 /*
