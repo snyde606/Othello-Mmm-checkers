@@ -1,4 +1,5 @@
-//Look at me. I am the captain now
+// Look at me. I am the captain now
+// Captains don't take naps
 
 #include "player.hpp"
 
