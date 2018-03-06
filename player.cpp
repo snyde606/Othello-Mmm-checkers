@@ -46,11 +46,13 @@ Move *Player::doMove(Move *opponentsMove, int msLeft) {
     
     int bestWorst = -1000000;
     Move* bestMove = nullptr;
+    
     for(int i = 0; i < avMoves->size(); i++){
 		Board* copyB = mmmBoard.copy();
 		copyB->doMove(&(avMoves->at(i)), side);
 		int worst = 100000;
 		vector<Move>* enemAvMoves = copyB->availableMoves(opponentSide);
+		
 		for(int j = 0; j < enemAvMoves->size(); j++){
 			Board* copyB2 = copyB->copy();
 			copyB2->doMove(&(enemAvMoves->at(j)), opponentSide);
@@ -58,6 +60,7 @@ Move *Player::doMove(Move *opponentsMove, int msLeft) {
 			if(trying < worst)
 				worst = trying;
 		}
+		
 		if(bestWorst < worst){
 			bestWorst = worst;
 			bestMove = &(avMoves->at(i));
