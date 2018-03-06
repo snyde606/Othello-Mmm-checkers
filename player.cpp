@@ -44,7 +44,7 @@ Move *Player::doMove(Move *opponentsMove, int msLeft) {
     
     this->mmmBoard.doMove(opponentsMove, opponentSide);
     
-    vector<Move> avMoves = mmmBoard.availableMoves(this->side);
+    vector<Move*> avMoves = mmmBoard.availableMoves(this->side);
     
     std::cerr << "Checkpt 1" << std::endl;
     
@@ -55,16 +55,16 @@ Move *Player::doMove(Move *opponentsMove, int msLeft) {
 		
 		Board* copyB = mmmBoard.copy();
 		
-		copyB->doMove(&(avMoves.at(i)), side);
+		copyB->doMove(avMoves.at(i), side);
 		
 		int worst = 100000;
-		vector<Move> enemAvMoves = copyB->availableMoves(opponentSide);
+		vector<Move*> enemAvMoves = copyB->availableMoves(opponentSide);
 		
 		
 		
 		for(int j = 0; j < enemAvMoves.size(); j++){
 			Board* copyB2 = copyB->copy();
-			copyB2->doMove(&(enemAvMoves.at(j)), opponentSide);
+			copyB2->doMove(enemAvMoves.at(j), opponentSide);
 			int trying = copyB2->getScore(side);
 			if(trying < worst)
 				worst = trying;
@@ -72,7 +72,7 @@ Move *Player::doMove(Move *opponentsMove, int msLeft) {
 		
 		if(bestWorst < worst){
 			bestWorst = worst;
-			bestMove = &(avMoves.at(i));
+			bestMove = avMoves.at(i);
 		}
 	}
 	

@@ -22,7 +22,7 @@ public:
     ~Board();
     Board *copy();
 
-    vector<Move> availableMoves(Side side);
+    vector<Move*> availableMoves(Side side);
     bool isDone();
     bool hasMoves(Side side);
     bool checkMove(Move *m, Side side);
