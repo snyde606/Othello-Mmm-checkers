@@ -23,6 +23,7 @@ public:
     ~Board();
     Board *copy();
 
+    std::vector<Move> availableMoves(Side side);
     bool isDone();
     bool hasMoves(Side side);
     bool checkMove(Move *m, Side side);

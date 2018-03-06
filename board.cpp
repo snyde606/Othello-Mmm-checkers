@@ -45,6 +45,19 @@ bool Board::onBoard(int x, int y) {
     return(0 <= x && x < 8 && 0 <= y && y < 8);
 }
 
+std::vector<Move> Board::availableMoves(Side side){
+	std::vector<Move> avMoves;
+	for (int i = 0; i < 8; i++) {
+		for (int j = 0; j < 8; j++) {
+			Move move(i, j);
+			if (checkMove(&move, side)) {
+				avMoves.push_back(move);
+			}
+		}
+	}
+	return avMoves;
+}
+				
 
 /*
  * Returns true if the game is finished; false otherwise. The game is finished
