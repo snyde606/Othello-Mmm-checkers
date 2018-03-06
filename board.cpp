@@ -48,7 +48,7 @@ bool Board::onBoard(int x, int y) {
 vector<Move*> Board::availableMoves(Side side){
 	std::vector<Move*> avMoves;
 	for (int i = 0; i < 8; i++) {
-		for (int j = 8; j < 8; j++) {
+		for (int j = 0; j < 8; j++) {
 			Move* move = new Move(i, j);
 			if (checkMove(move, side)) {
 				avMoves.push_back(move);
@@ -207,22 +207,22 @@ int Board::getScore(Side side){
 		for(int x = 0; x < 8; x++){
 			if(this->get(side, x, y)){
 				if((x==0 || x==7) && (y==0 || y==7))
-					total += 3;
+					total += 50;
 				else if(isAdjCorner(x, y))
-					total -= 1;
+					total -= 50;
 				else if(x==0 || x==7 || y==0 || y==7)
-					total += 2;
+					total += 15;
 				else
 					total += 1;
 			}
 			
 			if(this->get(opponent, x, y)){
 				if((x==0 || x==7) && (y==0 || y==7))
-					total -= 3;
+					total -= 50;
 				else if(isAdjCorner(x, y))
-					total += 1;
+					total += 50;
 				else if(x==0 || x==7 || y==0 || y==7)
-					total -= 2;
+					total -= 15;
 				else
 					total -= 1;
 			}
