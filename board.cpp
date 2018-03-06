@@ -178,3 +178,43 @@ void Board::setBoard(char data[]) {
         }
     }
 }
+
+bool Board::isAdjCorner(int x, int y){
+	return ((x==2 || x==7) && (y==1 || y==2 || y==7 || y==8)) || ((x==1 || x==8) && (y==2 || y==7));
+}
+
+int Board::getScore(Side side){
+	
+	int total = 0;
+	Side opponent = Side.BLACK;
+			if(side == Side.BLACK)
+				opponent = Side.WHITE;
+				
+	for (int y = 1; y < 9; y++){
+		for(int x = 1; x < 9; x++){
+			if(this.get(side, x, y)){
+				if((x==1 || x==8) && (y==1 || y==8))
+					total += 3;
+				else if(isAdjCorner(x, y))
+					total -= 1;
+				else if(x==1 || x==8 || y==1 || y==8)
+					total += 2;
+				else
+					total += 1;
+			}
+			
+			if(this.get(opponent, x, y)){
+				if((x==1 || x==8) && (y==1 || y==8))
+					total -= 3;
+				else if(isAdjCorner(x, y))
+					total += 1;
+				else if(x==1 || x==8 || y==1 || y==8)
+					total -= 2;
+				else
+					total -= 1;
+			}
+		}
+	}
+	
+	return score;
+}
