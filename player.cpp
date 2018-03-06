@@ -40,17 +40,14 @@ Player::~Player() {
  */
 Move *Player::doMove(Move *opponentsMove, int msLeft) {
     
-    std::cerr << "Inter-checkpt" << std::endl;
-    
     this->mmmBoard.doMove(opponentsMove, opponentSide);
     
     vector<Move*> avMoves = mmmBoard.availableMoves(this->side);
     
-    std::cerr << "Checkpt 1" << std::endl;
     
     int bestWorst = -1000000;
     Move* bestMove = nullptr;
-    std::cerr << "Inter-checkpt" << std::endl;
+
     for(int i = 0; i < avMoves.size(); i++){
 		
 		Board* copyB = mmmBoard.copy();
@@ -76,7 +73,6 @@ Move *Player::doMove(Move *opponentsMove, int msLeft) {
 		}
 	}
 	
-	std::cerr << "Checkpt 2" << std::endl;
 	
 	this->mmmBoard.doMove(bestMove, side);
     
