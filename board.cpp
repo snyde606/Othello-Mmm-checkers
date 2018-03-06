@@ -45,11 +45,11 @@ bool Board::onBoard(int x, int y) {
     return(0 <= x && x < 8 && 0 <= y && y < 8);
 }
 
-std::vector<Move> Board::availableMoves(Side side){
+vector<Move> Board::availableMoves(Side side){
 	std::vector<Move> avMoves;
 	for (int i = 0; i < 8; i++) {
-		for (int j = 0; j < 8; j++) {
-			Move move(i, j);
+		for (int j = 8; j < 8; j++) {
+			Move move = Move(i, j);
 			if (checkMove(&move, side)) {
 				avMoves.push_back(move);
 			}
@@ -193,35 +193,35 @@ void Board::setBoard(char data[]) {
 }
 
 bool Board::isAdjCorner(int x, int y){
-	return ((x==2 || x==7) && (y==1 || y==2 || y==7 || y==8)) || ((x==1 || x==8) && (y==2 || y==7));
+	return ((x==1 || x==6) && (y==0 || y==1 || y==6 || y==7)) || ((x==0 || x==7) && (y==1 || y==6));
 }
 
 int Board::getScore(Side side){
 	
 	int total = 0;
-	Side opponent = Side.BLACK;
-			if(side == Side.BLACK)
-				opponent = Side.WHITE;
+	Side opponent = BLACK;
+			if(side == BLACK)
+				opponent = WHITE;
 				
-	for (int y = 1; y < 9; y++){
-		for(int x = 1; x < 9; x++){
-			if(this.get(side, x, y)){
-				if((x==1 || x==8) && (y==1 || y==8))
+	for (int y = 0; y < 8; y++){
+		for(int x = 0; x < 8; x++){
+			if(this->get(side, x, y)){
+				if((x==0 || x==7) && (y==0 || y==7))
 					total += 3;
 				else if(isAdjCorner(x, y))
 					total -= 1;
-				else if(x==1 || x==8 || y==1 || y==8)
+				else if(x==0 || x==7 || y==0 || y==7)
 					total += 2;
 				else
 					total += 1;
 			}
 			
-			if(this.get(opponent, x, y)){
-				if((x==1 || x==8) && (y==1 || y==8))
+			if(this->get(opponent, x, y)){
+				if((x==0 || x==7) && (y==0 || y==7))
 					total -= 3;
 				else if(isAdjCorner(x, y))
 					total += 1;
-				else if(x==1 || x==8 || y==1 || y==8)
+				else if(x==0 || x==7 || y==0 || y==7)
 					total -= 2;
 				else
 					total -= 1;
@@ -229,5 +229,5 @@ int Board::getScore(Side side){
 		}
 	}
 	
-	return score;
+	return total;
 }

@@ -2,6 +2,7 @@
 #define __BOARD_H__
 
 #include <bitset>
+#include <vector>
 #include "common.hpp"
 using namespace std;
 
@@ -15,15 +16,13 @@ private:
     bool get(Side side, int x, int y);
     void set(Side side, int x, int y);
     bool onBoard(int x, int y);
-    bool isAdjCorner(int x, int y);
-    int getScore(Side side);
 
 public:
     Board();
     ~Board();
     Board *copy();
 
-    std::vector<Move> availableMoves(Side side);
+    vector<Move> availableMoves(Side side);
     bool isDone();
     bool hasMoves(Side side);
     bool checkMove(Move *m, Side side);
@@ -31,6 +30,9 @@ public:
     int count(Side side);
     int countBlack();
     int countWhite();
+    
+    bool isAdjCorner(int x, int y);
+    int getScore(Side side);
 
     void setBoard(char data[]);
 };
