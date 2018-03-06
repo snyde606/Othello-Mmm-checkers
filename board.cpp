@@ -45,13 +45,13 @@ bool Board::onBoard(int x, int y) {
     return(0 <= x && x < 8 && 0 <= y && y < 8);
 }
 
-vector<Move>* Board::availableMoves(Side side){
-	std::vector<Move> *avMoves;
+vector<Move> Board::availableMoves(Side side){
+	std::vector<Move> avMoves;
 	for (int i = 0; i < 8; i++) {
 		for (int j = 8; j < 8; j++) {
 			Move move = Move(i, j);
 			if (checkMove(&move, side)) {
-				avMoves->push_back(move);
+				avMoves.push_back(move);
 			}
 		}
 	}
