@@ -231,3 +231,39 @@ int Board::getScore(Side side){
 	
 	return total;
 }
+
+int Board::getScoreMinimax(Side side){
+	
+	int total = 0;
+	Side opponent = BLACK;
+			if(side == BLACK)
+				opponent = WHITE;
+				
+	for (int y = 0; y < 8; y++){
+		for(int x = 0; x < 8; x++){
+			if(this->get(side, x, y)){
+				if((x==0 || x==7) && (y==0 || y==7))
+					total += 1;
+				else if(isAdjCorner(x, y))
+					total += 1;
+				else if(x==0 || x==7 || y==0 || y==7)
+					total += 1;
+				else
+					total += 1;
+			}
+			
+			if(this->get(opponent, x, y)){
+				if((x==0 || x==7) && (y==0 || y==7))
+					total -= 1;
+				else if(isAdjCorner(x, y))
+					total -= 1;
+				else if(x==0 || x==7 || y==0 || y==7)
+					total -= 1;
+				else
+					total -= 1;
+			}
+		}
+	}
+	
+	return total;
+}

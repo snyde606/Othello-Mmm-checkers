@@ -63,7 +63,11 @@ Move *Player::doMove(Move *opponentsMove, int msLeft) {
 		for(int j = 0; j < enemAvMoves.size(); j++){
 			Board* copyB2 = copyB->copy();
 			copyB2->doMove(enemAvMoves.at(j), opponentSide);
-			int trying = copyB2->getScore(side);
+			int trying;
+			if(testingMinimax)
+				trying = copyB2->getScoreMinimax(side);
+			else
+				trying = copyB2->getScore(side);
 			if(trying < worst)
 				worst = trying;
 		}

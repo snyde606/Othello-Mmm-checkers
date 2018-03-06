@@ -33,6 +33,7 @@ public:
     
     bool isAdjCorner(int x, int y);
     int getScore(Side side);
+    int getScoreMinimax(Side side);
 
     void setBoard(char data[]);
 };
