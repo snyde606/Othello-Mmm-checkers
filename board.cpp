@@ -207,22 +207,22 @@ int Board::getScore(Side side){
 		for(int x = 0; x < 8; x++){
 			if(this->get(side, x, y)){
 				if((x==0 || x==7) && (y==0 || y==7))
-					total += 50;
+					total += 200;
 				else if(isAdjCorner(x, y))
-					total -= 50;
+					total -= 200;
 				else if(x==0 || x==7 || y==0 || y==7)
-					total += 15;
+					total += 20;
 				else
 					total += 1;
 			}
 			
 			if(this->get(opponent, x, y)){
 				if((x==0 || x==7) && (y==0 || y==7))
-					total -= 50;
+					total -= 200;
 				else if(isAdjCorner(x, y))
-					total += 50;
+					total += 200;
 				else if(x==0 || x==7 || y==0 || y==7)
-					total -= 15;
+					total -= 20;
 				else
 					total -= 1;
 			}
