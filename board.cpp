@@ -209,9 +209,9 @@ int Board::getScore(Side side){
 				if((x==0 || x==7) && (y==0 || y==7))
 					total += 200;
 				else if(isAdjCorner(x, y))
-					total -= 200;
+					total -= 150;
 				else if(x==0 || x==7 || y==0 || y==7)
-					total += 20;
+					total += 45;
 				else
 					total += 1;
 			}
@@ -220,9 +220,9 @@ int Board::getScore(Side side){
 				if((x==0 || x==7) && (y==0 || y==7))
 					total -= 200;
 				else if(isAdjCorner(x, y))
-					total += 200;
+					total += 150;
 				else if(x==0 || x==7 || y==0 || y==7)
-					total -= 20;
+					total -= 45;
 				else
 					total -= 1;
 			}
